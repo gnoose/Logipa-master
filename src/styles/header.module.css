@@ -1,0 +1,143 @@
+.container {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  min-height: 90px;
+  background: #db3121;
+  backdrop-filter: blur(8px);
+  padding: 0px 30px 0 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+.container img {
+  width: 58px;
+}
+
+.container h1 {
+  font-family: Syne;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 33px;
+  text-transform: uppercase;
+  color: #f3f3f3;
+  transform: scale(0.9);
+}
+
+.logoSection {
+  position: relative;
+  padding-left: 14%;
+}
+
+.navbar-buttons {
+  margin-left: auto;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-button {
+  border: 1px solid black;
+  padding: 12px 46px;
+  text-transform: uppercase;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transform: scale(0.9);
+}
+
+.sidebar-icon-active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+}
+
+@media screen and (max-width: 1200px) {
+  .navbar-button {
+    transform: scale(0.8);
+  }
+  .navbar-buttons {
+    gap: 0px;
+  }
+
+  .container h1 {
+    font-size: 27px;
+  }
+}
+
+.btn {
+  display: none;
+}
+
+@media screen and (max-width: 900px) {
+  .applyForLaunch h1,
+  .applyForLaunch p {
+    transform: scale(0.75);
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    padding: 0px;
+  }
+
+  .btn {
+    display: block;
+  }
+
+  .logoSection {
+    display: none;
+  }
+
+  .navbar-buttons {
+    display: none;
+  }
+}
+
+.navbar-button img {
+  width: 10px;
+}
+
+.navbar-button::after {
+  content: "";
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  background: #db3121;
+  left: -15px;
+  transform: rotate(45deg);
+  bottom: -16px;
+  border-top: 1px solid black;
+}
+
+.navbar-button::before {
+  content: "";
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  background: #db3121;
+  right: -15px;
+  transform: rotate(45deg);
+  top: -16px;
+  border-bottom: 1px solid black;
+}
+
+.navbar-button-primary {
+  background: transparent;
+  color: #1e1f35;
+}
+
+.navbar-button-secondary {
+  color: #fff;
+  background: #110d0c;
+}

@@ -1,0 +1,277 @@
+.container {
+	position: relative;
+	width: 80%;
+	background: #110d0c;
+	display: flex;
+	justify-content: center;
+	padding: 30px;
+	gap: 30px;
+	font-family: Syne;
+	color: white;
+	margin: 0 auto;
+}
+
+.stats {
+	width: 100%;
+	background-color: #282423;
+	padding: 40px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	font-family: "Space Grotesk";
+}
+
+.stats hr {
+	background: rgba(255, 255, 255, 0.15);
+	opacity: 0.15;
+	width: 1;
+}
+
+.stats h1 {
+	position: relative;
+	font-size: 22px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 26px;
+	letter-spacing: 0em;
+	text-align: left;
+}
+
+.stats ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.stats ul li {
+	display: flex;
+	font-family: "Space Grotesk";
+	justify-content: space-between;
+}
+
+.stats ul li p:nth-child(1) {
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 45px;
+	letter-spacing: 0em;
+	color: #abaaa9;
+	text-transform: none;
+}
+
+.subtitle {
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 45px;
+	letter-spacing: 0em;
+	color: white;
+	text-transform: none;
+}
+
+.stats ul li p span {
+	font-family: Inter;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 45px;
+	letter-spacing: 0em;
+	color: white;
+}
+
+.price {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.price {
+	height: 62px;
+}
+
+.price p:nth-child(1) {
+	font-size: 30px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 28px;
+	letter-spacing: 0em;
+	text-align: left;
+}
+
+.price p:nth-child(2) {
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 28px;
+	letter-spacing: 0em;
+	text-align: left;
+	color: #bebdbd;
+}
+
+.balance {
+	position: relative;
+	font-family: "Space Grotesk";
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.balance p {
+	color: #bebdbd;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 20px;
+	letter-spacing: 0em;
+}
+
+.balance section {
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
+}
+
+.balance section button {
+	font-family: "Space Grotesk";
+	width: 180px;
+	background: #db3121;
+	border: 1px solid #db3121;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 20px;
+	letter-spacing: 0.02em;
+	color: white;
+	cursor: pointer;
+}
+
+.balance section div {
+	height: 60px;
+	border: 1px solid #6d4afe4d;
+	display: flex;
+	align-items: center;
+	padding: 0px 20px;
+	flex: 1;
+	gap: 15px;
+}
+
+.balance section div input {
+	background-color: transparent;
+	border: none;
+	flex: 1;
+	height: 100%;
+	color: white;
+	padding: 0px 15px;
+}
+
+.staking-button {
+	position: relative;
+}
+
+.staking-button-primary::before {
+	content: "";
+	position: absolute;
+	height: 30px;
+	width: 30px;
+	background: #282423;
+	right: -15px;
+	transform: rotate(45deg);
+	top: -16px;
+	border-bottom: 1px solid #db3121;
+}
+
+.staking-button-primary::after {
+	content: "";
+	position: absolute;
+	height: 30px;
+	width: 30px;
+	background: #282423;
+	left: -15px;
+	transform: rotate(45deg);
+	bottom: -16px;
+	border-top: 1px solid #db3121;
+}
+
+.staking-button-secondary::before {
+	content: "";
+	position: absolute;
+	height: 30px;
+	width: 30px;
+	background: #282423;
+	right: -15px;
+	transform: rotate(45deg);
+	top: -16px;
+	border-bottom: 2px solid rgba(243, 243, 243, 0.1);
+}
+
+.staking-button-secondary::after {
+	content: "";
+	position: absolute;
+	height: 30px;
+	width: 30px;
+	background: #282423;
+	left: -15px;
+	transform: rotate(45deg);
+	bottom: -16px;
+	border-top: 2px solid rgba(243, 243, 243, 0.1);
+}
+
+@media screen and (max-width: 1500px) {
+	.container {
+		transform: scale(0.8);
+		padding: 0;
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	.container {
+		flex-direction: column;
+		padding: 30px;
+		transform: scale(1);
+		align-items: center;
+	}
+}
+
+@media screen and (max-width: 750px) {
+	.balance section {
+		flex-direction: column;
+	}
+	.balance section button {
+		width: 100%;
+		padding: 20px;
+	}
+
+	.balance section div {
+		padding: 20px;
+	}
+
+	.balance section div input {
+		background-color: transparent;
+		border: none;
+		flex: 1;
+		height: 100%;
+		color: white;
+		padding: 0px 15px;
+	}
+}
+
+@media (max-width: 540px) {
+	.container {
+		padding: 12px;
+		width: 100%;
+	}
+	.stats {
+		padding: 24px;
+	}
+}
+@media (max-width: 365px) {
+	.container {
+		padding: 0px;
+	}
+	.stats {
+		padding: 16px;
+	}
+}
