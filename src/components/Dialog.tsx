@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useContext } from 'react';
+import { createPortal } from "react-dom";
+
+import { AppContext } from '../context/app-context';
 import classes from "../styles/dialog.module.css";
 import Fox from "../resources/svgs/fox.svg";
 import ArrowRight from "../resources/svgs/arrowRight.svg";
@@ -6,7 +9,6 @@ import Wrap from "../resources/svgs/wrap.svg";
 import Circle from "../resources/svgs/circle.svg";
 import Security from "../resources/svgs/security.svg";
 import Close from "../resources/svgs/close.svg";
-import { createPortal } from "react-dom";
 
 const list = [
   {
@@ -41,6 +43,12 @@ const DropDown = ({ title, icon }: any) => {
 
 const Dialog = ({ setDialog, dialog }: any) => {
   if (!dialog) return null;
+  const { connect } = useContext(AppContext);
+
+  const walletConnectHandle = ({title, icon}: any) => {
+    connect();
+    setDialog(false);
+  };
 
   return (
     <main className={classes.container}>
@@ -57,7 +65,9 @@ const Dialog = ({ setDialog, dialog }: any) => {
         <p>Please select a wallet to connect to this marketplace</p>
 
         {list.map((content: any, index: any) => (
-          <DropDown key={index} {...content} />
+          <div key={index} style={{ cursor: "pointer" }} onClick={() => walletConnectHandle(content)}>
+            <DropDown {...content} />
+          </div>
         ))}
 
         <h5>

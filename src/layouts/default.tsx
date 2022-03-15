@@ -20,15 +20,13 @@ const DefaultLayout = ({ children }: any) => {
           flex: 1,
           display: "flex",
           overflow: "auto",
-          flexDirection: "column",
-          
+          flexDirection: "column"
         }}
       >
         <Header />
         <div
           style={{
-            flex: 1,
-          
+            flex: 1
           }}
         >
           {children}

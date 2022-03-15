@@ -1,4 +1,6 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+
+import { AppProvider } from './context/app-context';
 import IDO from "./pages/IDO";
 import HomePage from "./pages/HomePage";
 import Staking from "./pages/Staking";
@@ -9,7 +11,7 @@ import Calendare from "./pages/Calendare";
 
 function App() {
 	return (
-		<>
+		<AppProvider>
 			<Router>
 				<Routes>
 					<Route element={<IDO />} path="/ido" />
@@ -19,7 +21,7 @@ function App() {
 					<Route element={<Staking />} path="/staking" />
 				</Routes>
 			</Router>
-		</>
+		</AppProvider>
 	);
 }
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import downArrow from "../resources/images/down.png";
 import classes from "../styles/header.module.css";
 import PortalDialog from "./Dialog";
@@ -10,6 +10,7 @@ import {
 	SIDEBAR_STAKING_NAMESPACE,
 	SIDEBAR_CALENDAR_NAMESPACE,
 } from "../constants/constants";
+import { AppContext } from '../context/app-context';
 
 const data = [
 	{
@@ -31,6 +32,15 @@ const Header = () => {
 	const [dialog, setDialog] = useState(false);
 	const [sidebar, setSidebar] = useState(false);
 	const [active, setActive] = useState(SIDEBAR_IDO_NAMESPACE);
+	const { connected, wallet} = useContext(AppContext);
+
+	const shortenTxHash = useMemo(() => {
+		if (connected) {
+			return wallet ? wallet.substr(0, 6) + "..." + wallet.substr(wallet.length-4) : '';
+		} else {
+			return '';
+		}
+	}, [connected, wallet]);
 
 	useEffect(() => {
 		const dialogElement = document.getElementById("dialog");
@@ -112,7 +122,7 @@ const Header = () => {
 					onClick={() => setDialog(true)}
 					className={`${classes["navbar-button"]} ${classes["navbar-button-secondary"]}`}
 				>
-					Connect
+					{shortenTxHash ? shortenTxHash : 'Connect'}
 				</button>
 			</div>
 			<PortalDialog setDialog={setDialog} dialog={dialog} />

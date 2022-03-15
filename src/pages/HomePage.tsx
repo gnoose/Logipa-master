@@ -180,11 +180,13 @@ const HomePage = () => {
           {/* Web */}
           <table className={classes["dashboard-body-table"]}>
             <thead>
-              <th>Project Name</th>
-              <th>Chain</th>
-              <th>End In</th>
-              <th>Total Raise</th>
-              <th>Progress</th>
+              <tr>
+                <th>Project Name</th>
+                <th>Chain</th>
+                <th>End In</th>
+                <th>Total Raise</th>
+                <th>Progress</th>
+              </tr>
             </thead>
             <tbody>
               {data.map((val: any, index: any) => {
