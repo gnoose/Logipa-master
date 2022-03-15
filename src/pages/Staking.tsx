@@ -109,10 +109,15 @@ const Staking = () => {
 
   const withdraw = useCallback(async (value) => {
     if (connected) {
-      const contractInstance = new ethers.Contract(stakingContractAddress, stakingContractAbi, provider.getSigner());
-      const withrawPending = await contractInstance.withdraw();
-      await withrawPending.wait();
-      getInitialValues();
+      try{
+        const contractInstance = new ethers.Contract(stakingContractAddress, stakingContractAbi, provider.getSigner());
+        const withrawPending = await contractInstance.withdraw();
+        await withrawPending.wait();
+        getInitialValues();
+      } catch (err: any) {
+        alert(err.data.message || 'Requesting before lock time');
+      }
+
     }
   }, []);
 
