@@ -13,18 +13,10 @@ export const getBNBPrice = () => {
 }
 
 export const getSFundPrice = () => {
-  const options = {
-    method: 'GET',
-    url: 'https://coingecko.p.rapidapi.com/simple/price',
-    params: {ids: 'seedify-fund', vs_currencies: 'usd'},
-    headers: {
-      'x-rapidapi-host': 'coingecko.p.rapidapi.com',
-      'x-rapidapi-key': 'SIGN-UP-FOR-KEY'
-    }
-  };
-  return axios.request(options as any)
+  return axios
+    .get('https://coingecko.arcade.money/?action=coingeckoPrice&id=seedify-fund')
     .then(response => {
-      console.log("SFund Price: ", response);
+      console.log("Seedify Price: ", response);
       return response;
     })
     .catch(err => {

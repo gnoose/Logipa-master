@@ -16,12 +16,10 @@ const Balance = ({ title, btnProps, inputSubtitle, isPrimary, action, noInput }:
     <main className={classes.balance}>
       <p>{title}</p>
       <section>
-        <div>
-        {!noInput && <>
+        {!noInput && <div>
           <input type="text" value={value} onChange={event => setValue(event.target.value as any)} />
           <p>{inputSubtitle}</p>
-        </>}
-        </div>
+        </div>}
         <button
           onClick={() => action(value)}
           style={btnProps.style}
@@ -135,7 +133,7 @@ const Staking = () => {
       setStakerCount(parseFloat(_stakerCountResult.toString()));
       const _stakedTotalResult = await contractInstance.stakedTotal();
       const _sfundPrice: any = await getSFundPrice();
-      setTotalStakemount(calcAmount(_stakedTotalResult) * (_sfundPrice['seedify-fund'].usd || 0));
+      setTotalStakemount(calcAmount(_stakedTotalResult) * (_sfundPrice.data['seedify-fund'].usd || 0));
     }
     return () => {
       setTotalStakemount(0);
