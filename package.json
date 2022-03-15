@@ -12,6 +12,7 @@
     "@fullcalendar/daygrid": "^5.10.1",
     "@fullcalendar/react": "^5.10.1",
     "@ledgerhq/iframe-provider": "^0.4.2",
+    "@types/react-calendar": "^3.5.0",
     "@walletconnect/web3-provider": "^1.7.5",
     "all": "^0.0.0",
     "axios": "^0.26.1",

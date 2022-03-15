@@ -8,14 +8,14 @@ import "../styles/calendar.module.css"
 
 const Calendare = () => {
   const [date, setDate] = useState(new Date());
-  const onChange=(date)=>{
+  const onChange=(date: any)=>{
     setDate(date);
   }
   
   return (
     <DefaultLayout>
        <div className="calendar" style={{display:"flex", justifyContent:"center",}}>
-          <Calendar onChange={onChange} value={date} style={{height : "600px"}} />   
+          <Calendar onChange={onChange} value={date} />
       </div>
 		</DefaultLayout>
   )
