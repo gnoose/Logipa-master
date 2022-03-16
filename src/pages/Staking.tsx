@@ -5,10 +5,11 @@ import Statistics from "../components/Statistics";
 import DefaultLayout from "../layouts/default";
 import classes from "../styles/staking.module.css";
 import { AppContext } from '../context/app-context';
-import { stakingContractAddress, sfundContractAddress } from '../constants/constants';
+import { sfundContractAddress, contractList } from '../constants/constants';
 import stakingContractAbi from '../abi/contract-14.json';
 import sfundContractAbi from '../abi/sfund.json';
 import { getSFundPrice } from '../services';
+import Spinner from '../components/spinner';
 
 const Balance = ({ title, btnProps, inputSubtitle, isPrimary, action, noInput }: any) => {
   const [value, setValue] = useState(0);
@@ -37,6 +38,8 @@ const Balance = ({ title, btnProps, inputSubtitle, isPrimary, action, noInput }:
 };
 
 const Staking = () => {
+  const [loading, setLoading] = useState(false);
+  const [stakingContractAddress, setStakingContractAddress] = useState(contractList[0].contractAddress);
   const [walletBalance, setWalletBalance] = useState(0);
   const [stakedBalance, setStakedBalance] = useState(0);
   const [totalStakedAmount, setTotalStakemount] = useState(0);
@@ -74,6 +77,7 @@ const Staking = () => {
       return;
     }
     if (connected) {
+      setLoading(true);
       // async function bscFinalizeSwap(tokenAddr, amount){
       //   let data = bscBridge.methods.finalizeSwap(tokenAddr, amount);
       //   let encodedABI = data.encodeABI();
@@ -103,26 +107,30 @@ const Staking = () => {
       const stakingPending = await contractInstance.stake(price);
       await stakingPending.wait();
       getInitialValues();
+      setLoading(false);
     }
-  }, []);
+  }, [connected, provider]);
 
 
   const withdraw = useCallback(async (value) => {
     if (connected) {
       try{
+        setLoading(true);
         const contractInstance = new ethers.Contract(stakingContractAddress, stakingContractAbi, provider.getSigner());
         const withrawPending = await contractInstance.withdraw();
         await withrawPending.wait();
         getInitialValues();
+        setLoading(false);
       } catch (err: any) {
+        setLoading(false);
         alert(err.data.message || 'Requesting before lock time');
       }
-
     }
-  }, []);
+  }, [connected, provider]);
 
   const getInitialValues = useCallback(async () => {
     if (connected) {
+      setLoading(true);
       // const result = await provider.getBalance(wallet);
       // setWalletBalance(calcAmount(result));
       const sfundContractInstance = new ethers.Contract(sfundContractAddress, sfundContractAbi, provider.getSigner());
@@ -139,19 +147,25 @@ const Staking = () => {
       const _stakedTotalResult = await contractInstance.stakedTotal();
       const _sfundPrice: any = await getSFundPrice();
       setTotalStakemount(calcAmount(_stakedTotalResult) * (_sfundPrice.data['seedify-fund'].usd || 0));
+      setLoading(false);
     }
     return () => {
       setTotalStakemount(0);
     }
-  }, [connected, provider]);
+  }, [connected, provider, stakingContractAddress]);
+
+  const changeDuration = useCallback((event) => {
+    setStakingContractAddress(contractList[event.target.value].contractAddress);
+  }, []);
 
   useEffect(() => {
     checkChainId();
     getInitialValues();
-  }, [connected, provider]);
+  }, [connected, provider, stakingContractAddress]);
 
   return (
     <DefaultLayout>
+      <Spinner isLoading={loading} />
       <main className={classes.container}>
         <section className={classes.stats}>
           <h1>Participant IGO Stake</h1>
@@ -162,7 +176,16 @@ const Staking = () => {
           <hr />
           <ul>
             <li>
-              <p>Lock Period: <span>14 days</span></p>{" "}
+              <p>Lock Period:{" "}
+                <span>
+                  <select onChange={changeDuration}>
+                    {contractList.map((item, index) => (
+                      <option value={index}>{ item.lockDuration }</option>
+                    ))}
+                  </select>
+                  {" "}days
+                </span>
+              </p>{" "}
               <p className={classes.subtitle}>APY Rate</p>
             </li>
             <li>
