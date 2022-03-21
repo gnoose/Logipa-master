@@ -32,7 +32,7 @@ const Header = () => {
 	const [dialog, setDialog] = useState(false);
 	const [sidebar, setSidebar] = useState(false);
 	const [active, setActive] = useState(SIDEBAR_IDO_NAMESPACE);
-	const { connected, wallet} = useContext(AppContext);
+	const { connected, wallet } = useContext(AppContext);
 
 	const shortenTxHash = useMemo(() => {
 		if (connected) {
